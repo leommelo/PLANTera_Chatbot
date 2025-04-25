@@ -28,7 +28,7 @@ const ChatBot = () => {
         setInput('');
 
         try {
-            const resposta = await fetch('http://localhost:3001/mensagem', {
+            const resposta = await fetch('planterachatbot-production.up.railway.app', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ texto: input }),
