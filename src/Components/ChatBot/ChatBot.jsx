@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import "./ChatBot.css"
 import { Box, TextField, Paper, Typography, InputAdornment, IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
@@ -7,18 +7,46 @@ import PLANTera2 from "../../assets/PLANTera2.svg"
 const ChatBot = () => {
     const [mensagens, setMensagens] = useState([
         { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
-        { autor: 'bot', text: 'Olá! Eu sou a PLANTera, o chatbot oficial da Fúria. Como posso te ajudar?' },
     ]);
     const [input, setInput] = useState('');
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [mensagens]);
+
+    const handleEnviar = async () => {
+        if (!input.trim()) return;
+
+        const novaMsg = { autor: 'user', text: input };
+        setMensagens(prev => [...prev, novaMsg]);
+        setInput('');
+
+        try {
+            const resposta = await fetch('http://localhost:3001/mensagem', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texto: input }),
+            });
+
+            if (!resposta.ok) {
+                throw new Error('Erro na comunicação com o servidor');
+            }
+
+            const data = await resposta.json();
+            setMensagens(prev => [...prev, { autor: 'bot', text: data.resposta }]);
+        } catch (error) {
+            console.error('Erro:', error);
+            setMensagens(prev => [...prev, { 
+                autor: 'bot', 
+                text: 'Desculpe, tive um problema para processar sua mensagem. Tente novamente mais tarde.' 
+            }]);
+        }
+    };
 
     return (
         <Box
@@ -59,39 +87,45 @@ const ChatBot = () => {
                         padding: '1rem',
                     }}
                 >
-                    {mensagens.map((msg, idx) => (
-                        <Box
-                            key={idx}
-                            sx={{
-                                display: 'flex',
-                                justifyContent: msg.autor === 'bot' ? 'flex-start' : 'flex-end',
-                                alignItems: 'center',
-                                padding: 1,
-                                marginLeft: msg.autor === 'bot' ? 2 : 0,
-                                marginRight: msg.autor === 'usuário' ? 2 : 0,
-                            }}
-                        >
+                    <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ flex: 1 }} />
+                        {mensagens.map((msg, idx) => (
                             <Box
-                                component="img"
-                                src={PLANTera2}
-                                alt="bot"
-                                sx={{ width: 64, mr: 1 }}
-                            />
-                            <Paper
-                                elevation={2}
+                                key={idx}
                                 sx={{
-                                    px: 2,
-                                    py: 1,
-                                    bgcolor: msg.autor === 'usuário' ? '#1976d2' : '#e0e0e0',
-                                    color: msg.autor === 'usuário' ? '#fff' : '#000',
-                                    borderRadius: 2,
-                                    maxWidth: '60%',
+                                    display: 'flex',
+                                    justifyContent: msg.autor === 'bot' ? 'flex-start' : 'flex-end',
+                                    alignItems: 'center',
+                                    padding: 1,
+                                    marginLeft: msg.autor === 'bot' ? 2 : 0,
+                                    marginRight: msg.autor === 'user' ? 2 : 0,
                                 }}
                             >
-                                <Typography>{msg.text}</Typography>
-                            </Paper>
-                        </Box>
-                    ))}
+                                {msg.autor === 'bot' && (
+                                    <Box
+                                        component="img"
+                                        src={PLANTera2}
+                                        alt="bot"
+                                        sx={{ width: 64, mr: 1 }}
+                                    />
+                                )}
+                                <Paper
+                                    elevation={2}
+                                    sx={{
+                                        px: 2,
+                                        py: 1,
+                                        bgcolor: msg.autor === 'user' ? '#1976d2' : '#e0e0e0',
+                                        color: msg.autor === 'user' ? '#fff' : '#000',
+                                        borderRadius: 2,
+                                        maxWidth: '60%',
+                                    }}
+                                >
+                                    <Typography style={{ whiteSpace: 'pre-line' }}>{msg.text}</Typography>
+                                </Paper>
+                            </Box>
+                        ))}
+                        <div ref={messagesEndRef} />
+                    </div>
                 </Box>
                 <Box sx={{ 
                     display: 'flex', 
@@ -105,13 +139,13 @@ const ChatBot = () => {
                         placeholder="Digite sua mensagem..."
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && enviarMensagem()}
+                        onKeyDown={(e) => e.key === 'Enter' && handleEnviar()}
                         variant="outlined"
                         InputProps={{
                             sx: textFieldStyles,
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <IconButton edge="end" sx={{ color: '#390072' }}>
+                                    <IconButton edge="end" sx={{ color: '#390072' }} onClick={handleEnviar}>
                                         <SendIcon />
                                     </IconButton>
                                 </InputAdornment>
