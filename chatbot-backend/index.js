@@ -7,7 +7,7 @@ import aboutFuria from './responses/aboutFuria.js';
 import ultimoJogo from './responses/lastGame.js';
 import players from './responses/players.js';
 import aboutPlayer from './responses/aboutPlayer.js'
-import news from './responses/News.js';
+import news from './responses/news.js';
 
 const app = express();
 app.use(cors());
