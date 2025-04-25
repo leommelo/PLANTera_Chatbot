@@ -6,13 +6,17 @@ import ChatBot from './Components/ChatBot/ChatBot'
 import Presentation from './Components/Presentation/Presentation'
 
 function App() {
-
   return (
     <div className="App">
-      <Presentation/>
-      <ChatBot/>
+      <div className="app-container">
+        <div className="presentation-container">
+          <Presentation/>
+        </div>
+        <div className="chatbot-container">
+          <ChatBot/>
+        </div>
+      </div>
     </div>
-
   )
 }
 

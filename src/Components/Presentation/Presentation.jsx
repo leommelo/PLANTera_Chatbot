@@ -12,8 +12,13 @@ const Presentation = () => {
         </div>
         <div className='info'>
             <h2>Sua C4 de informações da FURIA.</h2>
-            <h1><span className='roxo'>PLANT</span>era</h1>
-            <h3>Conheça o novo chatbot oficial da Fúria: rápido e eficiente para te informar sobre os resultados das partidas e as próximas disputas do time de CS.</h3>
+            <h1><span className='roxo' data-text="PLANT">PLANT</span>era</h1>
+            <h3>
+                <span className="typing-line">Conheça o novo chatbot oficial da Fúria:</span>
+                <span className="typing-line">rápido e eficiente para te informar</span>
+                <span className="typing-line">sobre os resultados das partidas</span>
+                <span className="typing-line">e as próximas disputas do time de CS.</span>
+            </h3>
             <img src={Plantera} alt="Imagem da PLANTera" className='plantera' />
         </div>
     </div>

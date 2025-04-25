@@ -3,6 +3,7 @@ import "./ChatBot.css"
 import { Box, TextField, Paper, Typography, InputAdornment, IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import PLANTera2 from "../../assets/PLANTera2.svg"
+import Mensagem from './Mensagem';
 
 const ChatBot = () => {
     const [mensagens, setMensagens] = useState([
@@ -52,18 +53,16 @@ const ChatBot = () => {
         <Box
             sx={{
                 width: '100%',
-                height: '100vh',
-                borderLeft: '1px solid #390072',
-                borderRight: '1px solid #390072',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
             }}>
 
             <Box
-                className="Essa aqui chat"
                 sx={{
                     flex: 1,
                     bgcolor: '#1C1C1C',
                     height: '100%',
-                    maxHeight: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
@@ -76,6 +75,7 @@ const ChatBot = () => {
                     padding: '1rem',
                     top: 0,
                     backgroundColor: '#1C1C1C',
+                    boxShadow: '0px 40px 10px rgba(0, 0, 0, 0.3)'
                 }}>
                     <Typography variant='h3' sx={{ fontFamily: '"Jersey 25", sans-serif', color:'white' }}>PLANTera</Typography>
                 </Box>
@@ -89,41 +89,7 @@ const ChatBot = () => {
                 >
                     <div style={{ minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
                         <div style={{ flex: 1 }} />
-                        {mensagens.map((msg, idx) => (
-                            <Box
-                                key={idx}
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: msg.autor === 'bot' ? 'flex-start' : 'flex-end',
-                                    alignItems: 'center',
-                                    padding: 1,
-                                    marginLeft: msg.autor === 'bot' ? 2 : 0,
-                                    marginRight: msg.autor === 'user' ? 2 : 0,
-                                }}
-                            >
-                                {msg.autor === 'bot' && (
-                                    <Box
-                                        component="img"
-                                        src={PLANTera2}
-                                        alt="bot"
-                                        sx={{ width: 64, mr: 1 }}
-                                    />
-                                )}
-                                <Paper
-                                    elevation={2}
-                                    sx={{
-                                        px: 2,
-                                        py: 1,
-                                        bgcolor: msg.autor === 'user' ? '#1976d2' : '#e0e0e0',
-                                        color: msg.autor === 'user' ? '#fff' : '#000',
-                                        borderRadius: 2,
-                                        maxWidth: '60%',
-                                    }}
-                                >
-                                    <Typography style={{ whiteSpace: 'pre-line' }}>{msg.text}</Typography>
-                                </Paper>
-                            </Box>
-                        ))}
+                        <Mensagem mensagens={mensagens}/>
                         <div ref={messagesEndRef} />
                     </div>
                 </Box>
