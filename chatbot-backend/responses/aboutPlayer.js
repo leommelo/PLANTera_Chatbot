@@ -5,9 +5,9 @@ async function players(name) {
     const player = await HLTV.getPlayerByName({name: name});
 
 
-    return `Nosso grandioso ${name} está atualmente com ${player.age} anos e nasceu em: ${player.country.name}.
-
-            🔫 KDA: ${player.statistics.rating}
+    return `O brabo do ${name} tem atualmente ${player.age} anos e nasceu na gloriosa ${player.country.name}!
+            
+            🔫 KDA absurdo: ${player.statistics.rating}
 
             Você pode acompanhar ele pela Twitch em: <a href="${player.twitch}" target="_blank">${player.twitch}</a>
             

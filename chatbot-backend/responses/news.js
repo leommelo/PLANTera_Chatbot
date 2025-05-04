@@ -7,16 +7,18 @@ async function news() {
     const noticia2 = infos.news[1];
     const noticia3 = infos.news[2];
 
-    return `Estas são as últimas envolvendo nossa FURIA:
+    return `As últimas quentinhas da nossa FURIA 🐆🔥:
 
-    Título: <strong>${noticia1.name}</strong>
-    Link: <a href="https://www.hltv.org${noticia1.link}" target="_blank"><strong>https://www.hltv.org${noticia1.link}</strong></a>
-    
-    Título: <strong>${noticia2.name}</strong>
-    Link: <a href="https://www.hltv.org${noticia2.link}" target="_blank"><strong>https://www.hltv.org${noticia2.link}</strong></a>
-    
-    Título: <strong>${noticia3.name}</strong>
-    Link: <a href="https://www.hltv.org${noticia3.link}" target="_blank"><strong>https://www.hltv.org${noticia3.link}</strong></a>
+    📰 <strong>${noticia1.name}</strong>  
+    🔗 <a href="https://www.hltv.org${noticia1.link}">Link</a>
+
+    📰 <strong>${noticia2.name}</strong>  
+    🔗 <a href="https://www.hltv.org${noticia2.link}">Link</a>
+
+    📰 <strong>${noticia3.name}</strong>  
+    🔗 <a href="https://www.hltv.org${noticia3.link}">Link</a>
+
+    Fica de olho que vem mais por aí!
     `;
   } catch (err) {
     console.error(err);

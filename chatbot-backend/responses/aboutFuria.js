@@ -4,9 +4,15 @@ async function aboutFuria() {
   try {
     const response = await HLTV.getTeamStats({id:8297});
 
-    return `Atualmente nossa FURIA está com INCRÍVEIS ${response.overview.wins} vitórias ✅ e APENAS ${response.overview.losses} derrotas ❌.\n
-    E nesses jogos, tivemos ${response.overview.totalKills} kills 🔫 e só ${response.overview.totalDeaths} mortes 💀.\n
-    Nosso time é SINISTRO!! `;
+    return `A FURIA tá voando baixo! 🐆💨
+
+    ✅ Vitórias: ${response.overview.wins}    
+    ❌ Derrotas: ${response.overview.losses}  
+    🔫 Kills: ${response.overview.totalKills}  
+    💀 Mortes: ${response.overview.totalDeaths}
+
+    Tá achando que é brincadeira? Isso aqui é CS RAIZ! 😎
+ `;
     
   } catch (err) {
     console.error(err);
