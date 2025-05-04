@@ -8,7 +8,7 @@ async function lastGame() {
     console.log(ultimaPartida);
     
     return `Nosso último jogo foi na <strong>${ultimaPartida.event.name}</strong> no mapa <strong>${ultimaPartida.map}</strong>. E o resultado foi:\n 
-    <strong>${ultimaPartida.team1.name}</strong> ${ultimaPartida.result.team1} X  <strong>${ultimaPartida.result.team2}</strong> ${ultimaPartida.team2.name} `;
+    <strong>${ultimaPartida.team1.name}</strong> ${ultimaPartida.result.team1} X  ${ultimaPartida.result.team2} <strong>${ultimaPartida.team2.name}</strong> `;
     
   } catch (err) {
     console.error(err);

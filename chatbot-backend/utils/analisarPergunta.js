@@ -1,5 +1,3 @@
-// utils/analisarPergunta.js
-
 const padroes = {
     proximoJogo: [
       "próximo jogo", "proximo jogo", "próxima partida", "proxima partida",
