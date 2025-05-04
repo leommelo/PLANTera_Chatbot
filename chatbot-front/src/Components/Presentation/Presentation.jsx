@@ -14,7 +14,7 @@ const Presentation = () => {
             <h2>Sua C4 de informações da FURIA.</h2>
             <h1><span className='roxo' data-text="PLANT">PLANT</span>era</h1>
             <h3>
-                <span className="typing-line">Conheça o novo chatbot oficial da Fúria:</span>
+                <span className="typing-line">Conheça o novo chatbot não-oficial da Fúria:</span>
                 <span className="typing-line">rápido e eficiente para te informar</span>
                 <span className="typing-line">sobre os resultados das partidas</span>
                 <span className="typing-line">e as próximas disputas do time de CS.</span>
