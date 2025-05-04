@@ -6,7 +6,7 @@
 
 Você pode visualizar o protótipo do chatbot PLANTera no Figma clicando no link abaixo:
 
-🔗 [Acessar protótipo no Figma]([https://www.figma.com/file/EXEMPLO](https://www.figma.com/design/MW0BZq6IXoPjfngmfDBfNs/PLANTera?node-id=0-1&p=f&t=ISuGpzG7iY9K18df-0))
+🔗 [Acessar protótipo no Figma](https://www.figma.com/design/MW0BZq6IXoPjfngmfDBfNs/PLANTera?node-id=0-1&p=f&t=ISuGpzG7iY9K18df-0)
 
 
 ---
