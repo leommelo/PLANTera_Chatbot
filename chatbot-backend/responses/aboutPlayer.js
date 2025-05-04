@@ -9,9 +9,9 @@ async function players(name) {
 
             🔫 KDA: ${player.statistics.rating}
 
-            Você pode acompanhar ele pela Twitch em: ${player.twitch}
+            Você pode acompanhar ele pela Twitch em: <a href="${player.twitch}" target="_blank">${player.twitch}</a>
             
-            Ou pelo Instagram em: ${player.instagram}
+            Ou pelo Instagram em: <a href="${player.instagram}" target="_blank">${player.instagram}</a>
     `;
   } catch (err) {
     console.error(err);
