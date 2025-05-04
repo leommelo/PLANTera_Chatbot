@@ -5,9 +5,10 @@ async function lastGame() {
     const response = await HLTV.getTeamStats({id:8297});
 
     const ultimaPartida = response.matches[0]; 
+    console.log(ultimaPartida);
     
-    return `Nosso último jogo foi na ${ultimaPartida.event.name} no mapa ${ultimaPartida.map}. E o resultado foi:\n 
-    ${ultimaPartida.team1.name} ${ultimaPartida.result.team1} X  ${ultimaPartida.result.team2} ${ultimaPartida.team2.name} `;
+    return `Nosso último jogo foi na <strong>${ultimaPartida.event.name}</strong> no mapa <strong>${ultimaPartida.map}</strong>. E o resultado foi:\n 
+    <strong>${ultimaPartida.team1.name}</strong> ${ultimaPartida.result.team1} X  <strong>${ultimaPartida.result.team2}</strong> ${ultimaPartida.team2.name} `;
     
   } catch (err) {
     console.error(err);
