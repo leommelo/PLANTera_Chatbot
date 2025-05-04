@@ -2,12 +2,23 @@
 
 **PLANTera** é um projeto de chatbot não-oficial desenvolvido para fornecer informações rápidas e eficientes sobre o time de CS:GO da FURIA. O projeto é dividido em duas partes principais: o **frontend**, que é a interface do usuário, e o **backend**, que processa as mensagens e retorna as respostas.
 
+## 🎨 Protótipo no Figma
+
+Você pode visualizar o protótipo do chatbot PLANTera no Figma clicando no link abaixo:
+
+🔗 [Acessar protótipo no Figma]([https://www.figma.com/file/EXEMPLO](https://www.figma.com/design/MW0BZq6IXoPjfngmfDBfNs/PLANTera?node-id=0-1&p=f&t=ISuGpzG7iY9K18df-0))
+
+
 ---
 
 ## 🌐 Acesse o Chatbot
 
-O frontend do chatbot está disponível online em:  
+O **frontend** do chatbot está disponível online em:  
 🔗 **[https://plan-tera-chatbot.vercel.app](https://plan-tera-chatbot.vercel.app)**
+
+> ⚠️ **Atenção:** Somente o frontend está hospedado.  
+> O **backend ainda não está deployado**, então algumas funcionalidades que dependem de respostas do servidor podem não funcionar corretamente nesta versão online.
+
 
 ---
 
